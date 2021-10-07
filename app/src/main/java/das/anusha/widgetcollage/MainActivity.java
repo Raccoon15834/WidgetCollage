@@ -12,3 +12,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 }
+
+//Submit each layout screenshot
+//P3L07aDasAnusha.apk
+//embelishments apk and video
+//TODO transition later
