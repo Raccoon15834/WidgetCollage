@@ -26,35 +26,42 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/topFourth"
-        android:id="@+id/sSetScroll"/>
+        android:id="@+id/sSetScroll"
+        android:orientation="horizontal"/>
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:id="@+id/toDoList"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/verticalMidLine"
+        app:layout_constraintRight_toRightOf="@id/verticalMidLine"
         app:layout_constraintTop_toBottomOf="@id/sSetScroll"
         app:layout_constraintBottom_toTopOf="@id/logo" />
     <FrameLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:id="@+id/photo"
-        app:layout_constraintBottom_toTopOf="@id/adderWidget"
-        app:layout_constraintTop_toBottomOf="@id/sSetScroll"
+        android:id="@+id/photoFrame"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/verticalMidLine"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/topFourth"
+        app:layout_constraintBottom_toTopOf="@id/editSkillFrame"
+        />
     <FrameLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:id="@+id/adderWidget"
-        app:layout_constraintTop_toBottomOf="@id/photo"
-        app:layout_constraintBottom_toTopOf="logo"
+        android:id="@+id/editSkillFrame"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/verticalMidLine"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/photoFrame"
+        app:layout_constraintBottom_toTopOf="@id/logo">
+        <androidx.fragment.app.FragmentContainerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/skillAdder"
+            android:name="das.anusha.widgetcollage.EditSkillsFrag"/>
+    </FrameLayout>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src=""
+        android:src="@drawable/ic_launcher_background"
         android:id="@+id/logo"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">WidgetCollage</string>
+    <string name="app_name">Fockey Trainer</string>
+    <string-array name="skillsets">
+        <item>Conditioning</item>
+        <item>Passes &amp; Drives</item>
+        <item>Moves</item>
+        <item>Positioning</item>
+    </string-array>
 </resources>
