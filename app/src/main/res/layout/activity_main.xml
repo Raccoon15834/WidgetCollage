@@ -42,8 +42,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/verticalMidLine"
         app:layout_constraintTop_toBottomOf="@id/topFourth"
-        app:layout_constraintBottom_toTopOf="@id/editSkillFrame"
-        />
+        app:layout_constraintBottom_toTopOf="@id/editSkillFrame" />
     <FrameLayout
         android:layout_width="0dp"
         android:layout_height="0dp"

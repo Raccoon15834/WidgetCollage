@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">Fockey Trainer</string>
+    <string name="addSkillDirections">Name your new skill:</string>
+    <string name="addBtn">ADD</string>
     <string-array name="skillsets">
         <item>Conditioning</item>
         <item>Passes &amp; Drives</item>
         <item>Moves</item>
         <item>Positioning</item>
+        <!--cant repeat or messes with tags. MUST BE LESS THAN 10-->
     </string-array>
 </resources>

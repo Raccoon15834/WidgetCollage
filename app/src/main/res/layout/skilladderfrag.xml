@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/plusSign"
+        android:src="plus"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/directionsNewSkill"
+        android:text="@string/addSkillDirections"
+        app:layout_constraintTop_toBottomOf="@id/plusSign"
+        android:layout_marginTop="@dimen/largeMargin"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:visibility="gone"/>
+    <androidx.appcompat.widget.AppCompatEditText
+        android:layout_width="@dimen/bigTxt"
+        android:layout_height="match_parent"
+        android:id="@+id/newSkillNameEditor"
+        android:layout_margin="@dimen/smallMargin"
+        app:layout_constraintTop_toBottomOf="@id/directionsNewSkill"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:visibility="gone"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/submitBtn"
+        android:text="@string/addBtn"
+        app:layout_constraintTop_toBottomOf="@id/newSkillNameEditor"
+        android:layout_marginTop="@dimen/largeMargin"
+        android:padding="@dimen/largeMargin"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

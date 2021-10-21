@@ -1,5 +1,6 @@
 package das.anusha.widgetcollage;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,15 +15,20 @@ import androidx.fragment.app.Fragment;
 import org.w3c.dom.Text;
 
 public class SkillSetFrag extends Fragment {
-    private View.OnClickListener mySSlistener;
-    //TODO add listener that can communicate with activity
-    //guides.codepath.com/android/creating-and-using-fragments
-    String title;
+    String title, fragTag;
+    private MainClickListener myListener;
 
-    public static SkillSetFrag newInstance(String title){
+    public static SkillSetFrag newInstance(String title, String fragTag){
         SkillSetFrag myNewFrag= new SkillSetFrag();
         myNewFrag.title = title;
+        myNewFrag.fragTag = fragTag;
         return myNewFrag;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.myListener = (MainClickListener) context;
     }
 
     @Nullable
@@ -36,6 +42,17 @@ public class SkillSetFrag extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         TextView myTitle = view.findViewById(R.id.titleTxt);
         myTitle.setText(title);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myListener.onSetSelect(fragTag);
+            }
+        });
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.myListener = null;
+    }
 }
