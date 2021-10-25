@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -23,11 +24,11 @@ public class MainActivity extends AppCompatActivity implements MainClickListener
         SKILLSETS = getResources().getStringArray(R.array.skillsets);
         SETNUMBER = SKILLSETS.length;
         SetSkillTags = new LinkedList[SETNUMBER];
+        FragmentTransaction myFt = getSupportFragmentManager().beginTransaction();
         for(int i=0; i<SETNUMBER; i++){
             String fragTag = i+SKILLSETS[i];
-            FragmentTransaction myFt = getSupportFragmentManager().beginTransaction()
-                    .add(R.id.sSetScroll, SkillSetFrag.newInstance(SKILLSETS[i], fragTag), fragTag);
-            myFt.commit();
+            myFt.add(R.id.sSetScroll, SkillSetFrag.newInstance(SKILLSETS[i], fragTag), fragTag);
+            myFt.commit();//may do this after all at once
             SetSkillTags[i] = new LinkedList<String>();
         }
         resetSkillList(0);
@@ -35,13 +36,18 @@ public class MainActivity extends AppCompatActivity implements MainClickListener
     }
 
     private void resetSkillList(int newTagListInd) {
-        //TODO remove old frags, add new frags
+        //remove old frags, add new frags
         Iterator<String> oldFrags= SetSkillTags[selectIndex].iterator();
         while (oldFrags.hasNext()){
-            String tagForRemoval = oldFrags.next();
-            //getSupportFragmentManager().beginTransaction().add(R.id.sSetScroll, ----).commit();
+            Fragment forRemoval = getSupportFragmentManager().findFragmentByTag(oldFrags.next());
+            getSupportFragmentManager().beginTransaction().remove(forRemoval).commit();
         }
         selectIndex = newTagListInd;
+        Iterator<String> newFrags= SetSkillTags[selectIndex].iterator();
+        while (oldFrags.hasNext()){
+            Fragment forAdding = getSupportFragmentManager().findFragmentByTag(oldFrags.next());
+            getSupportFragmentManager().beginTransaction().add(R.id.skillScroll, forAdding).commit();
+        }
     }
 
     @Override
@@ -50,8 +56,9 @@ public class MainActivity extends AppCompatActivity implements MainClickListener
     }
 
     @Override
-    public void onAddSkill() {
+    public void onAddSkill(View view) {
         //TODO bring frag into focus
+        view.requestFocus();
     }
 }
 

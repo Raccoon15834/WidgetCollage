@@ -30,7 +30,7 @@ public class EditSkillsFrag extends Fragment {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myListener.onAddSkill();
+                myListener.onAddSkill(view);
                 //TODO: reset layout, bring back edittxt + directions
             }
         });
