@@ -31,7 +31,6 @@ public class EditSkillsFrag extends Fragment {
             @Override
             public void onClick(View view) {
                 myListener.onAddSkill(view);
-                //TODO: reset layout, bring back edittxt + directions
             }
         });
     }

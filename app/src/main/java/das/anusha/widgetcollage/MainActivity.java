@@ -1,12 +1,20 @@
 package das.anusha.widgetcollage;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.EditText;
 
+import java.io.Console;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -24,9 +32,9 @@ public class MainActivity extends AppCompatActivity implements MainClickListener
         SKILLSETS = getResources().getStringArray(R.array.skillsets);
         SETNUMBER = SKILLSETS.length;
         SetSkillTags = new LinkedList[SETNUMBER];
-        FragmentTransaction myFt = getSupportFragmentManager().beginTransaction();
         for(int i=0; i<SETNUMBER; i++){
             String fragTag = i+SKILLSETS[i];
+            FragmentTransaction myFt = getSupportFragmentManager().beginTransaction();
             myFt.add(R.id.sSetScroll, SkillSetFrag.newInstance(SKILLSETS[i], fragTag), fragTag);
             myFt.commit();//may do this after all at once
             SetSkillTags[i] = new LinkedList<String>();
@@ -58,7 +66,28 @@ public class MainActivity extends AppCompatActivity implements MainClickListener
     @Override
     public void onAddSkill(View view) {
         //TODO bring frag into focus
-        view.requestFocus();
+        Log.i("popup", "adder clicked!!!!");
+        Window currWin = getWindow();
+        //currWin.setLocalFocus(???);
+        currWin.setLayout(50, 50);
+        WindowManager.LayoutParams params = currWin.getAttributes();
+        params.dimAmount = 0.75f;
+        params.gravity = Gravity.CENTER;
+        getWindowManager().updateViewLayout(view, params);
+        //TODO: reset layout, bring back edittxt + directions
+        AppCompatButton done= view.findViewById(R.id.submitBtn);
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String newSkillText = String.valueOf(((EditText) findViewById(R.id.newSkillNameEditor)).getText());
+                //popup.cancel();TODO cancel popup
+                FragmentTransaction myFt = getSupportFragmentManager().beginTransaction();
+                myFt.add(R.id.skillScroll, SkillsFrag.newInstance(newSkillText), newSkillText);
+                SetSkillTags[selectIndex].add(newSkillText);//updated list of frags
+                myFt.commit();
+
+            }
+        });
     }
 }
 

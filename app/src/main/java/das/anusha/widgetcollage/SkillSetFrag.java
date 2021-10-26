@@ -17,6 +17,7 @@ import org.w3c.dom.Text;
 public class SkillSetFrag extends Fragment {
     String title, fragTag;
     private MainClickListener myListener;
+    //TODO: complexify to not menu bar
 
     public static SkillSetFrag newInstance(String title, String fragTag){
         SkillSetFrag myNewFrag= new SkillSetFrag();
