@@ -2,7 +2,9 @@ package das.anusha.widgetcollage;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Dialog;
@@ -18,7 +20,7 @@ import java.io.Console;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class MainActivity extends AppCompatActivity implements MainClickListener{
+public class MainActivity extends AppCompatActivity implements EditSkillsFrag.addListener, SkillSetFrag.setSelector{
     private String[] SKILLSETS;
     private int SETNUMBER;
     private int selectIndex = 0;
@@ -59,32 +61,34 @@ public class MainActivity extends AppCompatActivity implements MainClickListener
     }
 
     @Override
-    public void onSetSelect(String fragTitle) {
+    public void onSetSelect(String fragTitle) { ;
+        //TODO change selected look
         resetSkillList(Integer.parseInt(fragTitle.substring(0,1)));
     }
 
     @Override
-    public void onAddSkill(View view) {
-        //TODO bring frag into focus
-        Log.i("popup", "adder clicked!!!!");
-        Window currWin = getWindow();
-        //currWin.setLocalFocus(???);
-        currWin.setLayout(50, 50);
-        WindowManager.LayoutParams params = currWin.getAttributes();
-        params.dimAmount = 0.75f;
-        params.gravity = Gravity.CENTER;
-        getWindowManager().updateViewLayout(view, params);
-        //TODO: reset layout, bring back edittxt + directions
+    public void onAddSkill(View view, DialogFragment myPopup) {
+        Log.i("expand", "popup");
         AppCompatButton done= view.findViewById(R.id.submitBtn);
+        EditText myEditor = (EditText) view.findViewById(R.id.newSkillNameEditor);
+        View mytxt = view.findViewById(R.id.directionsNewSkill);
+        done.setVisibility(View.VISIBLE);
+        myEditor.setVisibility(View.VISIBLE);
+        mytxt.setVisibility(View.VISIBLE);
+        myEditor.requestFocus();
+        myPopup.show(getSupportFragmentManager(), "SkillAdderTag");//TODO pop up the popup
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String newSkillText = String.valueOf(((EditText) findViewById(R.id.newSkillNameEditor)).getText());
-                //popup.cancel();TODO cancel popup
+                myPopup.dismiss();//TODO shrink popup
+                String newSkillText = String.valueOf(myEditor.getText());
                 FragmentTransaction myFt = getSupportFragmentManager().beginTransaction();
                 myFt.add(R.id.skillScroll, SkillsFrag.newInstance(newSkillText), newSkillText);
                 SetSkillTags[selectIndex].add(newSkillText);//updated list of frags
                 myFt.commit();
+                done.setVisibility(View.GONE);
+                myEditor.setVisibility(View.GONE);
+                mytxt.setVisibility(View.GONE);
 
             }
         });
@@ -95,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements MainClickListener
 //P3L07aDasAnusha.apk
 //embelishments apk and video
 //guides.codepath.com/android/creating-and-using-fragments
+//TODO TODAY - pop up, change sets
 //TODO transition later
 //TODO colors, logo? skillset select formatting
 //TODO transitions when frag leaves returns, plus button animation, swipe delete

@@ -16,7 +16,7 @@ import org.w3c.dom.Text;
 
 public class SkillSetFrag extends Fragment {
     String title, fragTag;
-    private MainClickListener myListener;
+    private setSelector myListener;
     //TODO: complexify to not menu bar
 
     public static SkillSetFrag newInstance(String title, String fragTag){
@@ -25,11 +25,14 @@ public class SkillSetFrag extends Fragment {
         myNewFrag.fragTag = fragTag;
         return myNewFrag;
     }
+    public interface setSelector{
+        void onSetSelect(String fragTag);
+    }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        this.myListener = (MainClickListener) context;
+        this.myListener = (setSelector) context;
     }
 
     @Nullable
