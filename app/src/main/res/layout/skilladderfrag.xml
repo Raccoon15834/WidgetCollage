@@ -2,36 +2,35 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/plusSign"
-        android:src="@drawable/plus"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
-<!--    <requestFocus/>-->
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/largeMargin">
+<!--    <androidx.appcompat.widget.AppCompatImageButton-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:id="@+id/plusSign"-->
+<!--        android:src="@drawable/plus"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"/>-->
+<!--&lt;!&ndash;    <requestFocus/>&ndash;&gt;-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/directionsNewSkill"
         android:text="@string/addSkillDirections"
-        app:layout_constraintTop_toBottomOf="@id/plusSign"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="@dimen/largeMargin"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:visibility="gone"/>
+        app:layout_constraintLeft_toLeftOf="parent" />
     <androidx.appcompat.widget.AppCompatEditText
-        android:layout_width="@dimen/bigTxt"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bigTxt"
         android:id="@+id/newSkillNameEditor"
         android:layout_margin="@dimen/smallMargin"
         app:layout_constraintTop_toBottomOf="@id/directionsNewSkill"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:visibility="gone"/>
+        app:layout_constraintLeft_toLeftOf="parent" />
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,7 +40,6 @@
         android:layout_marginTop="@dimen/largeMargin"
         android:padding="@dimen/largeMargin"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:visibility="gone"/>
+        app:layout_constraintLeft_toLeftOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

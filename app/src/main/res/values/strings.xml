@@ -9,4 +9,13 @@
         <item>Positioning</item>
         <!--cant repeat or messes with tags. MUST BE LESS THAN 10-->
     </string-array>
+    <integer-array name="photoIds">
+        <item>@mipmap/img5</item>
+        <item>@mipmap/img1</item>
+        <item>@mipmap/img2</item>
+        <item>@mipmap/img3</item>
+        <item>@mipmap/img4</item>
+        <item>@mipmap/img5</item>
+        <item>@mipmap/img1</item>
+    </integer-array>
 </resources>
