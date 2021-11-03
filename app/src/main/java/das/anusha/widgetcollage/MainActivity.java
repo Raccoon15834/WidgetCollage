@@ -2,29 +2,20 @@ package das.anusha.widgetcollage;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.transition.Slide;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import java.io.Console;
 import java.util.Iterator;
 import java.util.LinkedList;
 public class MainActivity extends AppCompatActivity implements EditSkillsFrag.addListener, SkillSetFrag.setSelector{
@@ -48,9 +39,19 @@ public class MainActivity extends AppCompatActivity implements EditSkillsFrag.ad
             SKILLSETS[i] = fragTag;
             FragmentTransaction myFt = getSupportFragmentManager().beginTransaction();
             myFt.add(R.id.sSetScroll, SkillSetFrag.newInstance(SKILLSETS[i], fragTag), fragTag);
-            myFt.commit();//commit transaction to add to bar
+            myFt.commitNow();//commit transaction to add to bar
             SetSkillTags[i] = new LinkedList<String>();
         }
+        //testing
+        while(getSupportFragmentManager().findFragmentByTag(SKILLSETS[SKILLSETS.length-1]).getView()==null){
+            try {
+                wait(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+
         //fragment transitions
         resetSkillList(0);
         //adding new skill listener
@@ -88,8 +89,10 @@ public class MainActivity extends AppCompatActivity implements EditSkillsFrag.ad
 
     private void resetSkillList(int newTagListInd) {
         //selected look
-        TextView oldtitleTxt = getFragmentManager().findFragmentByTag(SKILLSETS[selectIndex]).getView().findViewById(R.id.titleTxt);
-        oldtitleTxt.setTextColor(getResources().getColor(R.color.white));//CAN NOT FIND BY TAG???
+        SkillSetFrag oldtitleTxt = (SkillSetFrag)(getSupportFragmentManager().findFragmentByTag(SKILLSETS[selectIndex]));//..findViewById(R.id.titleTxt);
+        //TextView oldtitleTxt = (TextView) v;
+        TextView txt = (TextView)oldtitleTxt.getItsView().findViewById(R.id.titleTxt);
+        txt.setTextColor(getResources().getColor(R.color.white));//CAN NOT FIND BY TAG?
         TextView newtitleTxt = getSupportFragmentManager().findFragmentByTag(SKILLSETS[newTagListInd]).getView().findViewById(R.id.titleTxt);
         newtitleTxt.setTextColor(getResources().getColor(R.color.darkBlue));
         //removing

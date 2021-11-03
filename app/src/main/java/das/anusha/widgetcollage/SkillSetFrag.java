@@ -17,6 +17,7 @@ import org.w3c.dom.Text;
 public class SkillSetFrag extends Fragment {
     String title, fragTag;
     private setSelector myListener;
+    private View itsView;
     //TODO: complexify to not menu bar
 
     public static SkillSetFrag newInstance(String title, String fragTag){
@@ -25,6 +26,11 @@ public class SkillSetFrag extends Fragment {
         myNewFrag.fragTag = fragTag;
         return myNewFrag;
     }
+
+    public View getItsView() {
+        return itsView;
+    }
+
     public interface setSelector{
         void onSetSelect(String fragTag);
     }
@@ -52,6 +58,7 @@ public class SkillSetFrag extends Fragment {
                 myListener.onSetSelect(fragTag);
             }
         });
+        itsView = view;
     }
 
     @Override
